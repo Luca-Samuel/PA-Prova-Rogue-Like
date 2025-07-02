@@ -1,0 +1,38 @@
+{
+  "salas": {
+    "comuns": {
+      "1": {
+        "descricao": "Você encontra um velho acampamento abandonado.",
+        "segura": true
+      },
+      "2": {
+        "descricao": "Gritos ecoam pela floresta... inimigos se aproximam!",
+        "segura": false,
+        "inimigos": ["goblin", "orc"]
+      },
+      "3": {
+        "descricao": "Você pisa em ossos quebradiços... algo se ergue da escuridão.",
+        "segura": false,
+        "inimigos": ["esqueleto"]
+      }
+    },
+    "chefes": {
+      "1": {
+        "descricao": "Um enorme demonio surge!",
+        "segura": false,
+        "inimigos": ["demônio_antigo"]
+      },
+      "2": {
+        "descricao": "Você ouve passos pesados... Um Orc Rei entra em cena!",
+        "segura": false,
+        "inimigos": ["rei_orc"]
+      }
+    },
+    "lojas": {
+      "1": {
+        "descricao": "Você encontra um comerciante viajante com várias armas afiadas.",
+        "segura": true
+      }
+    }
+  }
+}
