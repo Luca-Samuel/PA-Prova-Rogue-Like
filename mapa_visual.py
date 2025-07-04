@@ -27,8 +27,13 @@ def colorir(simbolo):
     }
     return cores.get(simbolo, Cores.RESET) + simbolo + Cores.RESET
 
-def gerar_mapa_visual(sala, largura=10, altura=10):
-    grade = [['#' for _ in range(largura)] for _ in range(altura)]
+
+def gerar_mapa_visual(sala, largura=None, altura=None):
+    if largura is None:
+        largura = random.randint(5, 10)
+    if altura is None:
+        altura = random.randint(5, 10)
+    grade = [['.' for _ in range(largura)] for _ in range(altura)]
 
     # Gera caminho até a saída
     x, y = 0, 0
@@ -46,6 +51,12 @@ def gerar_mapa_visual(sala, largura=10, altura=10):
     saida = (x, y)
     grade[saida[1]][saida[0]] = 'S'
     grade[0][0] = '@'
+
+    # gera paredes aleatórias no mapa
+    for y in range(altura):
+        for x in range(largura):
+            if (x, y) not in caminho and random.random() < 0.70:
+                grade[y][x] = '#'
 
     # Coloca inimigos/tesouros/armadilhas
     def colocar_em(codigo, quantidade):
