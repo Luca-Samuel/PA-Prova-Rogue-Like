@@ -159,9 +159,10 @@ class Mob(Entity):
 
     Essa classe se refere aos monstos
     '''
-    def __init__(self, name:str, hp:int, defense:int, weapon, gold_drop: int) -> None:
+    def __init__(self, name:str, hp:int, defense:int, weapon, gold_drop: int, boss: bool) -> None:
         super().__init__(name, hp, defense)
 
+        self.boss = boss
         self.ouro_dropado = False
         self.min_gold_drop = max(gold_drop - 10, 0)
         self.max_gold_drop = gold_drop + 10 

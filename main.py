@@ -8,6 +8,7 @@ from entities import jogador
 import json
 import random
 from random import seed
+from almas import *
 
 '''
 Este main executa uma seleção aletoria de salas, progredindo em numero gradativamente
@@ -29,37 +30,56 @@ def escolher_tipo_sala(fase):
 if __name__ == "__main__":
     contador = stage_counter()
 
-    for _ in range(10):
-        fase = contador.current_stage()
-        tipo_sala = escolher_tipo_sala(fase)
+    playing = True
+    jogador = jogador  # Certifique-se de que o jogador está definido corretamente
+    while(playing == True):
+        print("\n=== JOGO INICIADO ===")
 
-        print(f"\n=== FASE {fase}: TIPO {tipo_sala.upper()} ===")
+        for _ in range(10):
+            fase = contador.current_stage()
+            tipo_sala = escolher_tipo_sala(fase)
 
-        if tipo_sala == "lojas":
-            in_store(jogador)
-            contador.next_stage()
-            continue
+            print(f"\n=== FASE {fase}: TIPO {tipo_sala.upper()} ===")
 
-        sala_atual = carregar_sala_por_tipo(stage_pool, tipo_sala)
+            if tipo_sala == "lojas":
+                in_store(jogador)
+                contador.next_stage()
+                continue
 
-        if not sala_atual:
-            print("Erro ao carregar a sala!")
-            break
+            sala_atual = carregar_sala_por_tipo(stage_pool, tipo_sala)
 
-        print(f"\n[Descrição da Sala]: {sala_atual.get('descricao', 'Uma sala misteriosa...')}\n")
+            if not sala_atual:
+                print("Erro ao carregar a sala!")
+                break   
 
-        if not sala_atual.get('segura', False):
-            inimigos = inimigos_da_fase(sala_atual.get("inimigos", []))
-            sucesso = jogar_com_mapa(sala_atual, inimigos)
+            print(f"\n[Descrição da Sala]: {sala_atual.get('descricao', 'Uma sala misteriosa...')}\n")
 
-            if jogador.alive():
-                print("Você sobreviveu!")
+            if not sala_atual.get('segura', False):
+                inimigos = inimigos_da_fase(sala_atual.get("inimigos", []))
+                sucesso = jogar_com_mapa(sala_atual, inimigos)
+
+                if jogador.alive():
+                    print("Você sobreviveu!")
+
+                else:
+                    print("\nVocê foi derrotado... Fim de jogo.")
+                    keep_on_playing = input("Deseja jogar novamente? (s/n): ").strip().lower()
+
+                    if keep_on_playing == 's':
+                        jogador.hp = jogador.hp_max
+                        contador.reset_stage()
+                        mostrar_altar_almas(jogador)  # Chama a loja das almas
+                        continue
+                    
+                    else:
+                        print("Obrigado por jogar!")
+                        playing = False
+                        break       
+
+                    break   
             else:
-                print("\nVocê foi derrotado... Fim de jogo.")
-                break
-        else:
-            print("Você encontra um local seguro para descansar.")
-            jogador.hp = min(jogador.hp + 20, jogador.hp_max)
-            print(f"Você recuperou um pouco de energia. (HP: {jogador.hp}/{jogador.hp_max})")
+                print("Você encontra um local seguro para descansar.")
+                jogador.hp = min(jogador.hp + 20, jogador.hp_max)
+                print(f"Você recuperou um pouco de energia. (HP: {jogador.hp}/{jogador.hp_max})")
 
-        contador.next_stage()
+            contador.next_stage()
