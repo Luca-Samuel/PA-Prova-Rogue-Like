@@ -37,6 +37,30 @@ def inimigos_da_fase(nomes: list) -> list:
         elif nome == "avatar da ruína":
             resultado.append(Mob("Avatar da Ruína", 100, 6, claws, 50,True))
 
+        elif nome == "cultista":
+            resultado.append(Mob("Cultista", 28, 1, short_bow, 9, False))
+
+        elif nome == "lodo":
+            resultado.append(Mob("Lodo", 30, 0, claws, 5, False))
+
+        elif nome == "sapo_vil":
+            resultado.append(Mob("Sapo Vil", 22, 1, claws, 6, False))
+
+        elif nome == "avatar_da_ruina":
+            resultado.append(Mob("Avatar da Ruína", 120, 6, stone_hammer, 60, True))
+
+        elif nome == "serpente_gelida":
+            resultado.append(Mob("Serpente Gélida", 95, 4, short_bow, 45, True))
+
+        elif nome == "centopeia_ossea":
+            resultado.append(Mob("Centopeia Óssea", 110, 5, claws, 50, True))
+
+        elif nome == "fenix_sombrio":
+            resultado.append(Mob("Fênix Sombrio", 100, 3, short_bow, 55, True))
+
+        elif nome == "titao_de_ferro":
+            resultado.append(Mob("Titão de Ferro", 130, 7, stone_hammer, 70, True))
+
         else:
             print(f"[ERRO] Inimigo desconhecido: '{nome}'")
 

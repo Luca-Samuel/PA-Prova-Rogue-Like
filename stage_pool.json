@@ -8,24 +8,142 @@
       "2": {
         "descricao": "Gritos ecoam pela floresta... inimigos se aproximam!",
         "segura": false,
-        "inimigos": ["goblin", "orc"]
+        "inimigos": [
+          "goblin",
+          "orc"
+        ]
       },
       "3": {
         "descricao": "Você pisa em ossos quebradiços... algo se ergue da escuridão.",
         "segura": false,
-        "inimigos": ["esqueleto"]
+        "inimigos": [
+          "esqueleto"
+        ]
+      },
+      "4": {
+        "descricao": "Você encontra uma clareira tranquila, com flores que brilham à noite.",
+        "segura": true
+      },
+      "5": {
+        "descricao": "O chão está repleto de gosma pútrida. Algo rasteja...",
+        "segura": false,
+        "inimigos": [
+          "lodo",
+          "sapo_vil"
+        ]
+      },
+      "6": {
+        "descricao": "Você encontra uma cabana em ruínas, mas sem sinais de perigo.",
+        "segura": true
+      },
+      "7": {
+        "descricao": "Sombras se movem por entre as árvores.",
+        "segura": false,
+        "inimigos": [
+          "goblin",
+          "goblin",
+          "lobo"
+        ]
+      },
+      "8": {
+        "descricao": "Uma nascente cristalina brota entre as pedras.",
+        "segura": true
+      },
+      "9": {
+        "descricao": "Você vê pegadas frescas... e olhos brilhando na escuridão.",
+        "segura": false,
+        "inimigos": [
+          "lobo",
+          "esqueleto"
+        ]
+      },
+      "10": {
+        "descricao": "Você encontra um círculo de pedras antigas. O ar é leve aqui.",
+        "segura": true
+      },
+      "11": {
+        "descricao": "Uma armadilha é disparada! Mas você consegue evitá-la a tempo.",
+        "segura": true
+      },
+      "12": {
+        "descricao": "Você ouve sussurros atrás das árvores.",
+        "segura": false,
+        "inimigos": [
+          "cultista",
+          "goblin"
+        ]
+      },
+      "13": {
+        "descricao": "Um campo de batalha abandonado... mas não por muito tempo.",
+        "segura": false,
+        "inimigos": [
+          "orc",
+          "orc"
+        ]
+      },
+      "14": {
+        "descricao": "Uma trilha iluminada por vaga-lumes leva a um local calmo.",
+        "segura": true
+      },
+      "15": {
+        "descricao": "Você pisa em uma substância pegajosa. Algo está à espreita.",
+        "segura": false,
+        "inimigos": [
+          "lodo",
+          "lodo",
+          "sapo_vil"
+        ]
       }
     },
     "chefes": {
       "1": {
-        "descricao": "Um enorme demonio surge!",
+        "descricao": "Um enorme demônio surge!",
         "segura": false,
-        "inimigos": ["demônio_antigo"]
+        "inimigos": [
+          "demônio_antigo"
+        ]
       },
       "2": {
         "descricao": "Você ouve passos pesados... Um Orc Rei entra em cena!",
         "segura": false,
-        "inimigos": ["rei_orc"]
+        "inimigos": [
+          "rei_orc"
+        ]
+      },
+      "3": {
+        "descricao": "Uma presença ancestral corrompe o ar. Um Avatar da Ruína aparece.",
+        "segura": false,
+        "inimigos": [
+          "avatar_da_ruina"
+        ]
+      },
+      "4": {
+        "descricao": "O chão congela à sua volta. A Serpente Gélida acordou.",
+        "segura": false,
+        "inimigos": [
+          "serpente_gelida"
+        ]
+      },
+      "5": {
+        "descricao": "Você enfrenta a centopeia de ossos, criada por necromancia.",
+        "segura": false,
+        "inimigos": [
+          "centopeia_ossea"
+        ]
+      },
+      "6": {
+        "descricao": "Chamas negras envolvem a arena. O Fênix das Cinzas está à sua frente.",
+        "segura": false,
+        "inimigos": [
+          "fenix_sombrio"
+        ]
+      },
+      "7": {
+        "descricao": "Relâmpagos cortam o céu enquanto o Titã de Ferro se aproxima.",
+        "segura": false,
+        "inimigos": [
+          "titao_de_ferro"
+        ]
       }
     },
     "lojas": {

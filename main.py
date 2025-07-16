@@ -1,3 +1,4 @@
+import time
 from mapa_visual import jogar_com_mapa
 from room import *
 from stage_mobs import inimigos_da_fase
@@ -13,6 +14,7 @@ from almas import *
 '''
 Este main executa uma seleção aletoria de salas, progredindo em numero gradativamente
 '''
+
 
 seed()
 
@@ -35,7 +37,7 @@ if __name__ == "__main__":
     while(playing == True):
         print("\n=== JOGO INICIADO ===")
 
-        for _ in range(10):
+        for _ in range(21):
             fase = contador.current_stage()
             tipo_sala = escolher_tipo_sala(fase)
 
@@ -60,9 +62,12 @@ if __name__ == "__main__":
 
                 if jogador.alive():
                     print("Você sobreviveu!")
+                    time.sleep(1)
 
                 else:
                     print("\nVocê foi derrotado... Fim de jogo.")
+                    time.sleep(2.5)
+                    
                     keep_on_playing = input("Deseja jogar novamente? (s/n): ").strip().lower()
 
                     if keep_on_playing == 's':
@@ -79,6 +84,8 @@ if __name__ == "__main__":
                     break   
             else:
                 print("Você encontra um local seguro para descansar.")
+                time.sleep(2.5)
+                
                 jogador.hp = min(jogador.hp + 20, jogador.hp_max)
                 print(f"Você recuperou um pouco de energia. (HP: {jogador.hp}/{jogador.hp_max})")
 

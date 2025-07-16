@@ -82,6 +82,8 @@ def exibir_mapa(grade):
         print(' '.join([colorir(simbolo) for simbolo in linha]))
 
 def jogar_com_mapa(sala, inimigos):
+    
+    print("'@' é você.")
     grade, saida = gerar_mapa_visual(sala)
     jogador_x, jogador_y = 0, 0
 
@@ -89,59 +91,56 @@ def jogar_com_mapa(sala, inimigos):
         exibir_mapa(grade)
         print(f"\nPosição atual: ({jogador_x}, {jogador_y})")
 
-        direcao = input("Movimentar (cima, baixo, esquerda, direita): ").lower()
-        try:
-            passos = int(input("Quantos passos? "))
-        except ValueError:
-            print("Valor inválido.")
-            continue
+        direcao = input("Mover (W/A/S/D): ): ").lower()
 
         dx, dy = 0, 0
-        if direcao == 'cima':
+        if direcao == 'w':
             dy = -1
-        elif direcao == 'baixo':
+        elif direcao == 's':
             dy = 1
-        elif direcao == 'esquerda':
+        elif direcao == 'a':
             dx = -1
-        elif direcao == 'direita':
+        elif direcao == 'd':
             dx = 1
         else:
             print("Direção inválida.")
             continue
 
-        for _ in range(passos):
-            novo_x = jogador_x + dx
-            novo_y = jogador_y + dy
-            if 0 <= novo_x < len(grade[0]) and 0 <= novo_y < len(grade):
-                if grade[novo_y][novo_x] != '#':
-                    simbolo = grade[novo_y][novo_x]
-                    grade[jogador_y][jogador_x] = '.'
-                    jogador_x, jogador_y = novo_x, novo_y
+        
+        novo_x = jogador_x + dx
+        novo_y = jogador_y + dy
 
-                    if simbolo == 'E':
-                        print("⚔️ Você encontrou um inimigo!")
-                        Battle(inimigos)
-                        if not jogador.alive():
-                            return False
-                    elif simbolo == 'T':
-                        print("💥 Você caiu em uma armadilha!")
-                        jogador.hp -= 5
-                        print(f"HP atual: {jogador.hp}/{jogador.hp_max}")
-                        if jogador.hp <= 0:
-                            print("Você morreu!")
-                            return False
-                    elif simbolo == 'C':
-                        print("💰 Você encontrou um tesouro!")
-                        jogador.gold += random.randint(5, 15)
-                        print(f"Ouro atual: {jogador.gold}")
-                    elif simbolo == 'S':
-                        print("🚪 Você chegou à saída!")
-                        return True
+        if 0 <= novo_x < len(grade[0]) and 0 <= novo_y < len(grade):
+            if grade[novo_y][novo_x] != '#':
+                simbolo = grade[novo_y][novo_x]
+                grade[jogador_y][jogador_x] = '.'  # limpa posição antiga
+                jogador_x, jogador_y = novo_x, novo_y
 
-                    grade[jogador_y][jogador_x] = '@'
-                else:
-                    print("🚧 Bateu numa parede!")
-                    break
+                if simbolo == 'E':
+                    print("⚔️ Você encontrou um inimigo!")
+                    Battle(inimigos)
+                    if not jogador.alive():
+                        return False
+
+                elif simbolo == 'T':
+                    print("💥 Você caiu em uma armadilha!")
+                    jogador.hp -= 5
+                    print(f"HP atual: {jogador.hp}/{jogador.hp_max}")
+                    if jogador.hp <= 0:
+                        print("Você morreu!")
+                        return False
+
+                elif simbolo == 'C':
+                    print("💰 Você encontrou um tesouro!")
+                    jogador.gold += random.randint(5, 15)
+                    print(f"Ouro atual: {jogador.gold}")
+
+                elif simbolo == 'S':
+                    print("🚪 Você chegou à saída!")
+                    return True
+
+                grade[jogador_y][jogador_x] = '@'
             else:
-                print("❌ Fora do mapa!")
-                break
+                print("🚧 Bateu numa parede!")
+        else:
+            print("❌ Fora do mapa!")

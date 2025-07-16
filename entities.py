@@ -19,7 +19,7 @@ class Entity(ABC):
         self.hp = hp 
         self.hp_max = hp  
         self.defense = defense 
-        self.weapon = fists
+        self.weapon = fists  # Default weapon
 
     def alive(self): 
         return self.hp > 0 
@@ -101,7 +101,7 @@ class Player(Entity):
     def gold_get(self,gold): 
         self.gold += gold 
 
-    def attack(self,inimigos:list):
+    def attack(self, inimigos: list):
         vivos = [mob for mob in inimigos if mob.alive()]
         if not vivos:
             print("Nenhum inimigo restante!")
@@ -110,16 +110,20 @@ class Player(Entity):
         print("\nINIMIGOS RESTANTES: ")
         for i, mob in enumerate(vivos):
             print(f"[{i+1}] {mob.name} (HP: {mob.hp}/{mob.hp_max})") 
-        
-        try: 
-            
-            alvo_index = int(input("Digite o numero do inimigo a ser atacado: ")) - 1
-            alvo = vivos[alvo_index]
 
-        except: 
+        try:
+            if self.weapon.aoe:
+                print(f"{self.name} usa {self.weapon.weapon_name} e atinge todos os inimigos!")
+                for mob in vivos:
+                    mob.damage_taken(self.weapon.damage)
+                return  # Evita atacar novamente abaixo
+            else:
+                alvo_index = int(input("Digite o numero do inimigo a ser atacado: ")) - 1
+                alvo = vivos[alvo_index]
+        except Exception:
             print("Escolha inválida! Você perde o turno.")
             return      
-        
+
         dano = self.weapon.damage
         print(f"{self.name} ataca {alvo.name} com {self.weapon.weapon_name}")
         alvo.damage_taken(dano)
@@ -128,7 +132,7 @@ class Player(Entity):
         self.defense = max(self.defense + 10, 20)
         print(f"você se defendeu do proximo ataque! (sua defesa atual é: {self.defense})")        
         return
-    
+
     def reset_defense(self):  
         self.defense = self.base_defense
 
